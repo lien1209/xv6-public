@@ -21,6 +21,11 @@ main(void)
 
   for(;;){
     printf(1, "init: starting sh\n");
+    printf(1,"please input the next instruction\n");
+    printf(1,"You can input the instruction <ps> : Check the process\n");
+    printf(1,"You can input the instruction <change> : Change the priority of process\n");
+    printf(1,"You can input the instruction <foo> : Increase the processes\n"); 
+
     pid = fork();
     if(pid < 0){
       printf(1, "init: fork failed\n");

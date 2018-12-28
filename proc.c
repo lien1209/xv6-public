@@ -555,18 +555,32 @@ sti();
 
  // Loop over process table looking for process with pid.
 acquire(&ptable.lock);
+cprintf("-------------------------------------------\n");
 cprintf("name \t pid \t state \t \t priority\n");
+cprintf("-------------------------------------------\n");
 for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
-   if ( p->state == SLEEPING )
-     cprintf("%s \t %d  \t SLEEPING \t %d \n ", p->name, p->pid, p->priority);
-   else if ( p->state == RUNNING )
-     cprintf("%s \t %d  \t RUNNING \t %d \n ", p->name, p->pid , p->priority);
-   else if ( p->state == RUNNABLE )
-     cprintf("%s \t %d  \t RUNNABLE \t %d \n ", p->name, p->pid , p->priority);
+     //cprintf("-------------------------------------------\n");
+   if ( p->state == SLEEPING ){
+     cprintf("%s \t %d  \t SLEEPING \t %d \n", p->name, p->pid, p->priority);
+     cprintf("-------------------------------------------\n");
+   }
+   else if ( p->state == RUNNING ){
+     //cprintf("-------------------------------------------\n");
+     cprintf("%s \t %d  \t RUNNING \t %d \n", p->name, p->pid , p->priority);
+     cprintf("-------------------------------------------\n");
 }
-
+   else if ( p->state == RUNNABLE ){
+     //cprintf("-------------------------------------------\n");
+     cprintf("%s \t %d  \t RUNNABLE \t %d \n", p->name, p->pid , p->priority);
+     cprintf("-------------------------------------------\n");
+}
+}
+     //cprintf("-------------------------------------------\n");
 release(&ptable.lock);
-
+cprintf("please input the next instruction\n");
+cprintf("You can input the instruction <ps> : Check the process\n");
+cprintf("You can input the instruction <change> : Change the priority of process\n");
+cprintf("You can input the instruction <foo> : Increase the processes\n"); 
 return 22;
 }  
 
